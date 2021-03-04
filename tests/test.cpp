@@ -29,7 +29,6 @@ TEST(class_Stack, Test1) {
     obj1.pop();
     EXPECT_EQ(obj1.head(), 1);
 }
-/*
 TEST(class_Stack, Test2) {
     Stack<MyClass> obj1;
     MyClass x1;
@@ -49,7 +48,6 @@ TEST(class_Stack, Test2) {
     EXPECT_EQ(obj1.Length(), 1);
     EXPECT_EQ(obj1.head().GetName(), "EMPTY");
     EXPECT_EQ(obj1.head().GetValue(), 0);
-    //void del();
 }
 
 TEST(class_Stack_2, Test1) {
@@ -60,7 +58,6 @@ TEST(class_Stack_2, Test1) {
     EXPECT_EQ(sp.pop(), 2);
     EXPECT_EQ(sp.pop(), 8);
     EXPECT_EQ(sp.pop(), 5);
-    void del_2();
 }
 
 TEST(class_Stack_2, Test2) {
@@ -82,6 +79,5 @@ TEST(class_Stack_2, Test2) {
     EXPECT_EQ(obj2.Length(), 0);
     EXPECT_EQ(ptr.GetName(), "EMPTY");
     EXPECT_EQ(ptr.GetValue(), 0);
-    void del_2();
-}*/
+}
 
