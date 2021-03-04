@@ -1,41 +1,31 @@
 // Copyright 2020 Andreytorix
 #pragma once
 #include <utility>
+#include <memory>
 template <typename T>
 class Stack_2
 {
 private:
     struct Node
     {
-        Node* next; //указатель на следующий элемент списка
-        T obj;
+        std::unique_ptr<Node> next;
+        T obj; //хранит данные
     };
 public:
-    Node* nodeHead;
+    std::unique_ptr<Node> nodeHead;
     size_t length;
     Stack_2() {
         nodeHead = NULL;
         length = 0;
     }
         ~Stack_2() {
-        void del();
-    }
-    void del() {
-        while (nodeHead) {
-            Node* tmp = nodeHead;
-            nodeHead = nodeHead->next;
-            delete tmp;
-            void del();
-       }
     }
     void push(T&& value) {
-        Node* nd = new Node;
+        std::unique_ptr<Node> nd(new Node);
         nd->obj = std::move(value);
-        nd->next = nodeHead;
-        length++;
-        nodeHead = nd;
-        //nd = NULL;
-        delete nd;
+        nd->next = std::move(nodeHead);
+        ++length;
+        nodeHead = std::move(nd);
     }
     template <typename ... Args> //{4,8,3,6,9,4,43,3,6,}
     void push_emplace(Args&&...  value) {
