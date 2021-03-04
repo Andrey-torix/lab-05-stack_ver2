@@ -11,15 +11,15 @@ private:
         std::unique_ptr<Node> next;
         T obj; //хранит данные
     };
-public:  
+public:
     std::unique_ptr<Node> nodeHead;
     size_t length;
     Stack() {
         nodeHead = NULL;
         length = 0;
-    };
+    }
     ~Stack() {
-    }  
+    }
     void push(T&& value) { //push - передаём rvalue сслыку на объект
         std::unique_ptr<Node> nd(new Node);
         nd->obj = std::move(value);
