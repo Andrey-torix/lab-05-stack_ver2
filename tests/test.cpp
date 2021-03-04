@@ -14,9 +14,6 @@ public:
     std::string GetName() const { return name; }
     int GetValue() const { return value; }
 };
-//
-//
-
 TEST(class_Stack, Test1) {
     Stack<int> obj1;
     int x1 = 1;
@@ -31,7 +28,6 @@ TEST(class_Stack, Test1) {
     EXPECT_EQ(obj1.head(), 2);
     obj1.pop();
     EXPECT_EQ(obj1.head(), 1);
-    void del();
 }
 /*
 TEST(class_Stack, Test2) {
