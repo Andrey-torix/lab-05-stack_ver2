@@ -1,53 +1,46 @@
 // Copyright 2020 Andreytorix
 #pragma once
 #include <utility>
+#include <memory>
 template <typename T>
 class Stack
 {
 private:
     struct Node
     {
-        Node* next; //указатель на следующий элемент списка
+        std::unique_ptr<Node> next;
         T obj; //хранит данные
     };
-public:
-    Node* nodeHead;
+public:  
+    std::unique_ptr<Node> nodeHead;
     size_t length;
     Stack() {
-        nodeHead = nullptr;
+        nodeHead = NULL;
         length = 0;
-    }
+    };
     ~Stack() {
-    }
+    }  
     void push(T&& value) { //push - передаём rvalue сслыку на объект
-        Node* nd = new Node;
-        nd->obj = std::move(value);
-        nd->next = nodeHead;
-        ++length;
-        nodeHead = std::move(nd);
-        nd = nullptr;
-        delete nd;
-    }
-    void push(const T& value) { //push - передаём lvalue сслыку на объект
-        Node* nd = new Node;
+        std::unique_ptr<Node> nd(new Node);
         nd->obj = std::move(value);
         nd->next = std::move(nodeHead);
         ++length;
         nodeHead = std::move(nd);
-        nd = nullptr;
-        delete nd;
     }
-
+    void push(const T& value) { //push - передаём lvalue сслыку на объект
+        std::unique_ptr<Node> nd(new Node);
+        nd->obj = std::move(value);
+        nd->next = std::move(nodeHead);
+        ++length;
+        nodeHead = std::move(nd);
+    }
     size_t Length() {
         return length;
     }
     void pop() { //снимаем верхний элемент стэка (удаляем)
         if (nodeHead){
-        Node* tmp = nodeHead;
-        nodeHead =  nodeHead->next;
-        delete tmp;
-        //T tmp = std::move(nodeHead->obj);
-        //nodeHead = std::move(tmp);
+        T tmp = std::move(nodeHead->obj);
+        nodeHead = std::move(nodeHead->next);
         length--;
         }
     }
