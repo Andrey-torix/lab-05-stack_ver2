@@ -1,6 +1,7 @@
 // Copyright 2020 Andreytorix
 #include <utility>
 #include <memory>
+#ifndef Stack.hpp
 template <typename T>
 class Stack
 {
