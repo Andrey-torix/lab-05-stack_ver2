@@ -1,4 +1,5 @@
 // Copyright 2020 Andreytorix
+#pragma once
 #include <utility>
 #include <memory>
 template <typename T>
