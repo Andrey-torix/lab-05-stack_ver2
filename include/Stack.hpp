@@ -1,7 +1,7 @@
 // Copyright 2020 Andreytorix
+#pragma once
 #include <utility>
 #include <memory>
-#ifndef Stack.hpp
 template <typename T>
 class Stack
 {
